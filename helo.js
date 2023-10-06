@@ -1,16 +1,17 @@
-// const mission = process.argv[2];
+const {get} = require('https');
 
-// if (mission == "learn") {
-//     console.log('time to write Node code');
-// } else {
-//     console.log(`is ${mission} really more fun?`)
-// }
+// const server = http.createServer((req, res) => {
+//     res.writeHead(200, {'Content-Type': 'text/plain'});
+// })
 
-// Async callbacks
+// creating a request on https protocol
 
-setTimeout(() => console.log('🐇 finishes'), 1000)
+get('https://www.google.com', (res) => {
+    res.on('data', (chuck) => {
+        console.log(chuck.toString());
+    });
+    res.on('end', () => {
+        console.log('No more data available')
+    })
+})
 
-console.log('🐢 finishes')
-
-// Non blocking functions 
-// ex: setTimeOut 
