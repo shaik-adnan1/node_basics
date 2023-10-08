@@ -1,12 +1,11 @@
-function encrypt(data) {
-    return 'encrypt data ' + data
-}
+// AXIOS
 
-function send(url, data) {
-    const encryptData = encrypt(data);
-    console.log(`sending encrypted data: ${encryptData}`)
-}
+const axios = require("axios");
 
-module.exports = {
-    send
-}
+axios
+ .get("https://jsonplaceholder.typicode.com/users")
+ .then(function (response) {
+    console.log(response);
+  }).catch(err => {
+    console.log(err)
+  })
