@@ -31,6 +31,22 @@ const friends = [
   },
 ];
 
+// ------------ HOW MIDDLEWARE SYNTAX IS WRITTEN --------------------------------
+
+// app.use => for initialiZing or using the middleware 
+// (req, res, next) => next parameter is what differs
+
+// MILDDLEWARE
+
+app.use((req, res, next) => {
+    const start = Date.now();
+    console.log(`Hello from the middleware 1💀`);
+    console.log(`${req.method} ${req.url}`)
+    next();
+    const ms = Date.now() - start;
+    console.log(ms)
+})
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
@@ -67,3 +83,5 @@ app.post("/messages", (req, res) => {
   console.log(req.body);
   res.send("Hello there");
 });
+
+// --------- 
