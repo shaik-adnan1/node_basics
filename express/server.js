@@ -1,35 +1,14 @@
 const express = require("express");
 
+// import { getMessages, postMessages } from ''
+// ---------------- ROUTES ------------  
+const friendsRouter = require('./routes/friends.router.js');
+const messagesRouter = require('./routes/messages.router.js');
+
 const app = express();
 
-const PORT = 3000;
 
-const friends = [
-  {
-    id: 0,
-    name: "Oggy",
-  },
-  {
-    id: 1,
-    name: "Sir Issac Newton",
-  },
-  {
-    id: 2,
-    name: "jamal part 2",
-  },
-  {
-    id: 3,
-    name: "Kashimati",
-  },
-  {
-    id: 4,
-    name: "jamal",
-  },
-  {
-    id: 5,
-    name: "issac New to town",
-  },
-];
+const PORT = 3000;
 
 // ------------ HOW MIDDLEWARE SYNTAX IS WRITTEN --------------------------------
 
@@ -57,45 +36,11 @@ app.get("/", (req, res) => {
     name: "Sir Issac New to town",
   });
 });
-
-app.get("/friends", (req, res) => {
-  res.json(friends);
-});
-
-app.get("/friends/:id", (req, res) => {
-  const friendId = Number(req.params.id);
-
-  const friend = friends[friendId];
-  if (friend) {
-    res.status(200).json(friend);
-  } else {
-    res.status(404).json({
-        error: 'friend does not exist'
-    })
-  }
-});
-
-app.get("/messages", (req, res) => {
-  res.send("Hello there");
-});
-
-app.post("/messages", (req, res) => {
-  console.log(req.body);
-  res.send("Hello there");
-});
-
-// --------- POST REQS --------------------------------
 app.use(express.json())
-app.post('/friends', (req, res) => {
-    if(!req.body.name) {
-      return res.status(400).json({
-        error: 'name is required'
-      })
-    }
-    const newFriend = {
-      name: req.body.name,
-      id: friends.length
-    }
-    friends.push(newFriend)
-    res.json(newFriend)
-})
+
+// ====> USING THE ROUTES <==========
+app.use('/friends', friendsRouter);
+app.use('/messages', messagesRouter);
+
+// --------- POST REQS ----------------------
+
