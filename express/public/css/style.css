@@ -1,0 +1,10 @@
+img {
+  height: 500px;
+}
+
+h1 {
+  color: #44c806;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+}
